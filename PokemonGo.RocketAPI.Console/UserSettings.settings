@@ -15,10 +15,10 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DefaultLatitude" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">52.379189</Value>
+      <Value Profile="(Default)">34.017168306480791</Value>
     </Setting>
     <Setting Name="DefaultLongitude" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">4.899431</Value>
+      <Value Profile="(Default)">-118.49646058130725</Value>
     </Setting>
     <Setting Name="DefaultAltitude" Type="System.Double" Scope="User">
       <Value Profile="(Default)">10</Value>
