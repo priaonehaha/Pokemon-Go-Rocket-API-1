@@ -38,6 +38,7 @@ namespace PokemonGo.RocketAPI
 		Error = 1,
 		Warning = 2,
 		Info = 3,
-		Debug = 4
+		Debug = 4,
+        Title = 5
 	}
 }

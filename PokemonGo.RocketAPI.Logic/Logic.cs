@@ -112,6 +112,7 @@ namespace PokemonGo.RocketAPI.Logic
                 await RecycleItems();
                 await ExecuteCatchAllNearbyPokemons();
                 await TransferDuplicatePokemon();
+                await GetCurrentLevelInformation();
             }
         }
 
@@ -247,6 +248,18 @@ namespace PokemonGo.RocketAPI.Logic
             var useRaspberry = await _client.UseCaptureItem(encounterId, AllEnum.ItemId.ItemRazzBerry, spawnPointId);
             Logger.Write($"Use Rasperry. Remaining: {berry.Count}", LogLevel.Info);
             await Task.Delay(3000);
+        }
+
+        // Credits to Spegeli aka. MaxMuster for this function
+        public async Task GetCurrentLevelInformation()
+        {
+            var inventory = await _client.GetInventory();
+            var stats = inventory.InventoryDelta.InventoryItems.Select(i => i.InventoryItemData?.PlayerStats).ToArray();
+            foreach (var v in stats)
+                if (v != null)
+                {
+                    Logger.Write($"Level: {v.Level} EXP: {v.Experience} / {v.NextLevelXp}", LogLevel.Title);
+                }
         }
     }
 }
