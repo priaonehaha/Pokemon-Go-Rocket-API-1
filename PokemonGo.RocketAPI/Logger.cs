@@ -30,7 +30,11 @@ namespace PokemonGo.RocketAPI
 				return;
 			logger.Write(message, level);
 		}
-	}
+        public static void Title(string message)
+        {
+            System.Console.Title = $"[{ System.DateTime.Now.ToString("HH:mm:ss")}] { message}";
+        }
+    }
 
 	public enum LogLevel
 	{
@@ -38,7 +42,6 @@ namespace PokemonGo.RocketAPI
 		Error = 1,
 		Warning = 2,
 		Info = 3,
-		Debug = 4,
-        Title = 5
+		Debug = 4
 	}
 }

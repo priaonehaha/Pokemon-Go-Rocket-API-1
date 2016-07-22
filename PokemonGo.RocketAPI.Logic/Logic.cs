@@ -59,7 +59,8 @@ namespace PokemonGo.RocketAPI.Logic
 
                     var inventory = await _client.GetInventory();
                     var playerStats = inventory.InventoryDelta.InventoryItems.Select(i => i.InventoryItemData).FirstOrDefault(i => i.PlayerStats != null);
-                    
+
+                    await GetCurrentLevelInformation();
                     await EvolveAllPokemonWithEnoughCandy();
                     await TransferDuplicatePokemon();
                     await RecycleItems();
@@ -102,6 +103,7 @@ namespace PokemonGo.RocketAPI.Logic
 
             foreach (var pokeStop in pokeStops)
             {
+                await GetCurrentLevelInformation();
                 var distance = Navigation.DistanceBetween2Coordinates(_client.CurrentLat, _client.CurrentLng, pokeStop.Latitude, pokeStop.Longitude);
                 var update = await _client.UpdatePlayerLocation(pokeStop.Latitude, pokeStop.Longitude, _clientSettings.DefaultAltitude);
                 var fortInfo = await _client.GetFort(pokeStop.Id, pokeStop.Latitude, pokeStop.Longitude);
@@ -112,7 +114,6 @@ namespace PokemonGo.RocketAPI.Logic
                 await RecycleItems();
                 await ExecuteCatchAllNearbyPokemons();
                 await TransferDuplicatePokemon();
-                await GetCurrentLevelInformation();
             }
         }
 
@@ -258,7 +259,7 @@ namespace PokemonGo.RocketAPI.Logic
             foreach (var v in stats)
                 if (v != null)
                 {
-                    Logger.Write($"Level: {v.Level} EXP: {v.Experience} / {v.NextLevelXp}", LogLevel.Title);
+                    Logger.Title($"Level: {v.Level} EXP: {v.Experience} / {v.NextLevelXp}");
                 }
         }
     }

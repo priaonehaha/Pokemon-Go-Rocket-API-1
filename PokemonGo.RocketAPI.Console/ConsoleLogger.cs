@@ -37,9 +37,6 @@ namespace PokemonGo.RocketAPI.Console
 
             switch (level)
             {
-                case LogLevel.Title:
-                    System.Console.Title = $"[{ DateTime.Now.ToString("HH:mm:ss")}] { message}";
-                    break;
                 case LogLevel.Error:
                     System.Console.ForegroundColor = ConsoleColor.Red;
                     break;
